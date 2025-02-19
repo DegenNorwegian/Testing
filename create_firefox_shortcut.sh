@@ -2,7 +2,7 @@
 
 # Variables
 APPNAME="Firefox"
-INSTALL_DIR="/path/to/your/existing/firefox"  # Update this to your actual Firefox installation path
+INSTALL_DIR="/userdata/system/firefox"  # Existing Firefox installation path
 DESKTOP_FILE="/usr/share/applications/${APPNAME,,}.desktop"
 PERSISTENT_DESKTOP="/userdata/system/configs/${APPNAME,,}/${APPNAME,,}.desktop"
 ICON_URL="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.png"
@@ -11,7 +11,7 @@ EXEC_PATH="${INSTALL_DIR}/firefox"
 
 # Check if the Firefox executable exists
 if [ ! -f "$EXEC_PATH" ]; then
-    echo "Firefox executable not found at ${EXEC_PATH}. Please update the INSTALL_DIR variable."
+    echo "Firefox executable not found at ${EXEC_PATH}. Please ensure Firefox is installed correctly."
     exit 1
 fi
 
@@ -33,13 +33,4 @@ Name=${APPNAME}
 Exec=${EXEC_PATH}
 Icon=${ICON_PATH}
 Terminal=false
-Categories=Network;WebBrowser;
-EOF
-
-# Create symlink to /usr/share/applications
-ln -sf "$PERSISTENT_DESKTOP" "$DESKTOP_FILE"
-
-# Make the desktop file executable
-chmod +x "$PERSISTENT_DESKTOP"
-
-echo "Shortcut creation for ${APPNAME} complete!"
+Categories=Network;WebBrow
