@@ -1,23 +1,24 @@
 #!/bin/bash
 
-# Define Firefox download URL (ARM64 version)
+# Define Firefox download URL (ARM64 version, Norwegian Bokmål)
 FIREFOX_URL="https://download.mozilla.org/?product=firefox-nightly-latest-l10n-ssl&os=linux64-aarch64&lang=nb-NO"
 INSTALL_DIR="/userdata/system/firefox"
 FIREFOX_BIN="$INSTALL_DIR/firefox"
 PORTS_DIR="/userdata/roms/ports"
 
-# Create directories if they don't exist
+# Create necessary directories
 mkdir -p "$INSTALL_DIR"
 mkdir -p "$PORTS_DIR"
 mkdir -p "/usr/bin"
 
-# Download and extract Firefox
+# Download Firefox
 echo "Downloading Firefox for ARM64..."
-curl -L "$FIREFOX_URL" -o "/userdata/system/firefox.tar.bz2"
+curl -L "$FIREFOX_URL" -o "/userdata/system/firefox.tar.xz"
 
+# Extract Firefox
 echo "Extracting Firefox..."
-tar -xjf "/userdata/system/firefox.tar.bz2" -C "$INSTALL_DIR" --strip-components=1
-rm "/userdata/system/firefox.tar.bz2"
+tar -xJf "/userdata/system/firefox.tar.xz" -C "$INSTALL_DIR" --strip-components=1
+rm "/userdata/system/firefox.tar.xz"
 
 # Create a symlink in /usr/bin for easier access
 ln -sf "$FIREFOX_BIN" /usr/bin/firefox
